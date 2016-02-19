@@ -2,3 +2,5 @@ bin/
 bin/ctec/view/Panel2d.class
 
 *.class
+
+bin/ctec/controller/Controller2d.class
