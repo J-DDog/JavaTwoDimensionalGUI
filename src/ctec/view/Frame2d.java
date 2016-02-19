@@ -19,7 +19,7 @@ public class Frame2d extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
-		this.setSize(400, 400);
+		this.setSize(500, 400);
 		this.setTitle("My Window");
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
