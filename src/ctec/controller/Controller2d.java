@@ -7,12 +7,13 @@ public class Controller2d
 {
 	
 	private Frame2d baseFrame;
-	private Egg[][] EggCaton;
+	private Egg[][] eggCarton;
 	
 	public Controller2d()
 	{
 		baseFrame = new Frame2d(this);
 		
+		eggCarton = new Egg[2][6];
 		
 	}
 	
