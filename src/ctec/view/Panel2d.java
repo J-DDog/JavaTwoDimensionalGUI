@@ -1,43 +1,50 @@
 package ctec.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 
 import ctec.controller.Controller2d;
+
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 
 public class Panel2d extends JPanel
 {
 
 	private Controller2d baseController;
-	private SpringLayout springLayout;
-	private JTable table;	
+	private SpringLayout baseLayout;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JLabel lblNewLabel;
+	private JButton displayButton;
+	private JButton changeButton;
+	private JLabel currentEggLable;
+	private JTable EggTable;
+	private JScrollPane tablePane;
+//	private JTable coffeeMugTable;
 	
 	public Panel2d(Controller2d baseController)
 	{
 		this.baseController = baseController;
 		
-		
-		this.springLayout = new SpringLayout();
-		this.table = new JTable();
+		this.baseLayout = new SpringLayout();
 		this.textField_2 = new JTextField();
 		this.textField_2.setColumns(10);
 		this.textField_1 = new JTextField();
 		this.textField_1.setColumns(10);
 		this.textField = new JTextField();
 		this.textField.setColumns(10);
-		this.btnNewButton= new JButton("New button");
-		this.btnNewButton_1= new JButton("New button");
-		this.lblNewLabel= new JLabel("New label");
+		this.displayButton = new JButton("Display");
+		this.changeButton = new JButton("Change");
+		this.currentEggLable = new JLabel("New label");
+		
 		
 		setupTable();
 		setupPanel();
@@ -47,47 +54,63 @@ public class Panel2d extends JPanel
 
 	private void setupTable()
 	{
-		// TODO Auto-generated method stub
+		String[] columnHeaders = {"Column 0", "Column 1", "Column 2"};
+		DefaultTableModel tableModel = new DefaultTableModel(baseController.getEggCarton(), columnHeaders);
+		EggTable = new JTable(tableModel);
+		tablePane = new JScrollPane(EggTable);
+		
+//		DefaultTableModel mugTableModel = new DefaultTableModel(baseController.getMyMugs(), columnHeaders);
+//		coffeeMugTable = new JTable(mugTableModel);
 		
 	}
 
 	private void setupPanel()
 	{
-		this.setLayout(springLayout);
-		add(table);
-		add(textField);
-		add(textField_1);
-		add(textField_2);
-		add(btnNewButton);
-		add(btnNewButton_1);
-		add(lblNewLabel);
+		this.setLayout(baseLayout);
+		this.add(textField);
+		this.add(textField_1);
+		this.add(textField_2);
+		this.add(displayButton);
+		this.add(changeButton);
+		this.add(currentEggLable);
+		this.add(tablePane);
 	}
 
 	private void setupLayout()
 	{
-		
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 96, SpringLayout.SOUTH, textField_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 182, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.NORTH, textField, 5, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, textField, 297, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 16, SpringLayout.EAST, btnNewButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -28, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.NORTH, table, -66, SpringLayout.NORTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, table, -89, SpringLayout.NORTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 31, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -30, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 5, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, textField_1, 158, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 5, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, textField_2, 19, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.WEST, table, 83, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, table, 114, SpringLayout.WEST, this);
-		
+		baseLayout.putConstraint(SpringLayout.NORTH, textField, 5, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, textField, 297, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, textField_1, 5, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, textField_1, 158, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, textField_2, 5, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, textField_2, 19, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, tablePane, 0, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, tablePane, 7, SpringLayout.SOUTH, displayButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, currentEggLable, 5, SpringLayout.NORTH, displayButton);
+		baseLayout.putConstraint(SpringLayout.EAST, currentEggLable, -80, SpringLayout.WEST, displayButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, changeButton, 0, SpringLayout.NORTH, displayButton);
+		baseLayout.putConstraint(SpringLayout.WEST, changeButton, 0, SpringLayout.WEST, textField_2);
+		baseLayout.putConstraint(SpringLayout.NORTH, displayButton, 6, SpringLayout.SOUTH, textField);
+		baseLayout.putConstraint(SpringLayout.EAST, displayButton, 0, SpringLayout.EAST, textField);
 	}
 
 	private void setupListeners()
 	{
-		// TODO Auto-generated method stub
+		changeButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
+		displayButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
 		
 	}
 }

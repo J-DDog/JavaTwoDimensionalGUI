@@ -21,4 +21,10 @@ public class Controller2d
 	{
 		
 	}
+	
+	public Egg[][] getEggCarton()
+	{
+		return eggCarton;
+	}
+	
 }
