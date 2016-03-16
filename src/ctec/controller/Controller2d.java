@@ -13,13 +13,19 @@ public class Controller2d
 	{
 		baseFrame = new Frame2d(this);
 		
-		eggCarton = new Egg[2][6];
 		
+		setupCarton();
 	}
 	
 	public void start()
 	{
 		
+	}
+	
+	private void setupCarton()
+	{
+		eggCarton = new Egg[2][6];
+		eggCarton[0][0] = new Egg(true, true, false);
 	}
 	
 	public Egg[][] getEggCarton()
